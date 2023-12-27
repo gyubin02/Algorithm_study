@@ -1,4 +1,4 @@
-/*Binary Search ±¸Çö*/
+/*Binary Search Â±Â¸Ã‡Ã¶*/
 #include <iostream>
 int BS(int low, int high, int x);
 
