@@ -1,4 +1,5 @@
 //맨버-마이어스 알고리즘
+
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -32,9 +33,12 @@ vector<int> getSuffixArray(const string& s) {
 		ret[i] = i;
 	for (int i = 0; i < N; i++)
 		group[i] = s[i];
-	for (int t = 1; 2 * t <= N; t *= 2) {
+	int t = 1;
+	while(t < N) {
 		suffixComparator comp = suffixComparator(t, group);
 		sort(ret.begin(), ret.end(), comp);
+		t *= 2;
+		if (t >= N) break;
 		vector<int> newGroup(N + 1);
 		newGroup[ret[0]] = 0;
 		newGroup[N] = -1;
