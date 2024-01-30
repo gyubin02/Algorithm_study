@@ -1,4 +1,5 @@
 //트립 구현 (균형 잡힌 이진검색트리)
+
 #include <iostream>
 using namespace std;
 
@@ -10,7 +11,11 @@ struct Node {
 	Node(keyType& _key) :key(_key), priority(rand()), size(1), left(NULL), right(NULL) {}
 	void setLeft(Node* node) { left = node; calcSize(); }
 	void setRight(Node* node) { right = node; calcSize(); }
-	void calcSize() { size = left->size + 1 + right->size; }
+	void calcSize() { 
+		size = 1;
+		if (left) size += left->size;
+		if (right) size += right->size;
+	}
 };
 
 typedef pair<Node*, Node*> NodePair;
