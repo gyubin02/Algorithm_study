@@ -25,3 +25,29 @@ vector<int> dijkstra(int start) {
 		}
 	}
 }
+
+vector<int> dijkstra_2(int start) {
+	vector<int> dist(N, 999);
+	vector<bool> visited(N, false);
+	dist[start] = 0;
+
+	while (true) {
+		//방문할 정점 찾기
+		int closest = 999, here;
+		for (int i = 0; i < N; i++)
+			if (!visited[i] && closest > dist[i]) {
+				closest = dist[i];
+				here = i;
+			}
+		if (closest == 999) break;
+		visited[here] = true;
+		//dist 갱신
+		for (int i = 0; i < adj[here].size(); i++) {
+			int cost = adj[here][i].first;
+			int there = adj[here][i].second;
+			if(!visited[there])
+				dist[there] = min(dist[there], dist[here] + cost);
+		}
+	}
+	return dist;
+}
